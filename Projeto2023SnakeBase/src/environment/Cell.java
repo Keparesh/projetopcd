@@ -41,6 +41,7 @@ public class Cell {
 
 	public void release() {
 		//TODO
+		ocuppyingSnake=null;
 	}
 
 	public boolean isOcupiedBySnake() {

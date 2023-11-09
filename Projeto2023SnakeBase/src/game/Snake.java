@@ -3,6 +3,8 @@ package game;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+import javax.print.attribute.standard.PrinterMessageFromOperator;
+
 import environment.LocalBoard;
 import gui.SnakeGui;
 import environment.Board;
@@ -15,7 +17,6 @@ import environment.Cell;
  *
  */
 public abstract class Snake extends Thread implements Serializable{
-	private static final int DELTA_SIZE = 10;
 	protected LinkedList<Cell> cells = new LinkedList<Cell>();
 	protected int size = 5;
 	private int id;
@@ -44,6 +45,9 @@ public abstract class Snake extends Thread implements Serializable{
 	}
 	protected void move(Cell cell) throws InterruptedException {
 		// TODO
+		
+		
+		
 	}
 	
 	public LinkedList<BoardPosition> getPath() {
@@ -58,10 +62,13 @@ public abstract class Snake extends Thread implements Serializable{
 		// Random position on the first column. 
 		// At startup, snake occupies a single cell
 		int posX = 0;
-		//int posY = (int) (Math.random() * Board.NUM_ROWS);
-		int posY = (int) (4);//as cobras vao parar a mesma celula, isto nao pode acontecer, tem de procurar a outra livre
-		
+		int posY = (int) (Math.random() * Board.NUM_ROWS);
 		BoardPosition at = new BoardPosition(posX,  posY);
+		
+		while(getBoard().getCell(at).isOcupied()) {
+			posY = (int) (Math.random() * Board.NUM_ROWS); //se houver posicoes iniciais iguais, ele corre o random de novo.
+			at=new BoardPosition(posX, posY);
+		}
 		try {
 			board.getCell(at).request(this);
 		} catch (InterruptedException e1) {
