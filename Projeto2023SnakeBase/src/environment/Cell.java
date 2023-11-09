@@ -33,7 +33,7 @@ public class Cell {
 		return position;
 	}
 
-	public void request(Snake snake)
+	public synchronized void request(Snake snake)
 			throws InterruptedException {
 		//TODO coordination and mutual exclusion
 		ocuppyingSnake=snake;

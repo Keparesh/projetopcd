@@ -45,4 +45,5 @@ public class BoardPosition {
 	public BoardPosition getCellRight() {
 		return new BoardPosition(x+1, y);
 	}
+	
 }
